@@ -1,4 +1,4 @@
-from register_user import register_user
+/-from register_user import register_user
 from login import login
 from database import show_all_users, delete_user, get_audit_log, delete_all_users, is_database_empty, get_user_count
 
