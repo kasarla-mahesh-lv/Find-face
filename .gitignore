@@ -205,6 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+ feature/dev-chaitanya
+feature/dev-chaitanya
+
+
+
+
 feature/dev-kishore1
 
 node_modules/
@@ -212,8 +218,9 @@ node_modules/
 package.json
 package
 
+main
 node_modules/
 package-lock.json
 package.json
 .env
-main
+
