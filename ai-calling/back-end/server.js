@@ -8,7 +8,7 @@ const fastify = Fastify({
 fastify.register(formbody);
 fastify.get("/", async (request, reply) => {
   return {
-    message: "Luvetha Restaurant API"
+    message: "Luvetha Restaurant"
   };
 });
 fastify.post("/test", async (request, reply) => {
