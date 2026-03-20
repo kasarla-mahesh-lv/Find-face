@@ -1,59 +1,44 @@
-feature/dev-kishore1
 require("dotenv").config();
+
 const Fastify = require("fastify");
 const formbody = require("@fastify/formbody");
 const ivrRoutes = require("./src/routes/ivrRoutes");
+
 const fastify = Fastify({
-  logger: true
+  logger: true,
 });
+
 fastify.register(formbody);
-fastify.get("/", async (request, reply) => {
-  return {
-    message: "Luvetha Restaurant"
-  };
-});
-fastify.post("/test", async (request, reply) => {
-  const { name } = request.body;
+
+fastify.get("/", async () => ({
+  message: "Luvetha Restaurant",
+}));
+
+fastify.post("/test", async (request) => {
+  const { name } = request.body || {};
+
   return {
     message: "API working successfully",
-    name: name
+    name,
   };
 });
+
 fastify.register(ivrRoutes, { prefix: "/ivr" });
-const start = async () => {
+
+async function start() {
   try {
+    const port = Number(process.env.PORT) || 5000;
+
     await fastify.listen({
-      port: process.env.PORT || 5000,
-      host: "0.0.0.0"
-    }); 
-    console.log(
-      `Server running on http://localhost:${process.env.PORT || 5000}`
-    );
+      port,
+      host: "0.0.0.0",
+    });
+
+    console.log(`Server running on http://localhost:${port}`);
   } catch (error) {
     fastify.log.error(error);
     process.exit(1);
   }
-};
-start();
- feature/dev-sravanig
- require("dotenv").config()
-
-const fastify = require("fastify")({ logger: true })
-const initDB = require("./src/utils/initDB")
-
-async function start() {
-
-  await initDB()
-
-  fastify.get("/", async () => {
-    return { message: "IVR backend running" }
-  })
-
-  await fastify.listen({ port: 3000 })
-
-  console.log("Server running on port 3000")
-
 }
 
-start()
-
+start();
